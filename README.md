@@ -20,7 +20,7 @@ example of simple database
 
 |No|Task|`psql`|`mysql`|`sqlite`|`mongo`|
 |---|---|---|---|---|---|
-|01|Getting Started with Command Line|[✅]()|❌|❌|❌|
+|01|Getting Started with Command Line|✅|❌|❌|❌|
 |02|Create Tables and Load Data|✅|❌|❌|❌|
 |02|Keys and Constraints|❌|❌|❌|❌|
 |03|View, Procedure|❌|❌|❌|❌|
@@ -30,7 +30,7 @@ example of simple database
 |07|Monitoring and Optimizing your Databases|❌|❌|❌|❌|
 |08|Troubleshooting|❌|❌|❌|❌|
 |09|Automating Tasks using Shell Scripts|❌|❌|❌|❌|
-|10|APIs|❌|❌|❌|❌|
+|10|APIs|✅|❌|❌|❌|
 
 # references
 https://faker.readthedocs.io/en/master/
