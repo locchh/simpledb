@@ -1,4 +1,4 @@
-# command mongo
+# commands
 
 - show all databases: `show dbs`
 
