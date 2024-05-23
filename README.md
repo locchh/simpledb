@@ -25,12 +25,16 @@ example of simple database
 |02|Keys and Constraints|✅|✅|❌|❌|
 |03|View, Procedure|✅|✅|❌|❌|
 |04|Configuration and System|❌|❌|❌|❌|
-|05|Backup and Restore|❌|❌|❌|❌|
-|06|User Management and Access Control|❌|❌|❌|❌|
-|07|Monitoring and Optimizing your Databases|❌|❌|❌|❌|
-|08|Troubleshooting|❌|❌|❌|❌|
-|09|Automating Tasks using Shell Scripts|❌|❌|❌|❌|
-|10|APIs|✅|✅|❌|✅|
+|05|Transaction Logs for Recovery|❌|❌|❌|❌|
+|06|Backup and Restore|❌|❌|❌|❌|
+|07|User Management and Access Control|❌|❌|❌|❌|
+|08|Monitoring and Optimizing your Databases|❌|❌|❌|❌|
+|09|Troubleshooting|❌|❌|❌|❌|
+|10|Automating Tasks using Shell Scripts|❌|❌|❌|❌|
+|11|APIs|✅|✅|❌|✅|
 
 # references
+
+https://docs.sqlalchemy.org/en/14/orm/tutorial.html
+
 https://faker.readthedocs.io/en/master/
