@@ -65,14 +65,14 @@ The system catalog stores schema metadata, such as information about tables and 
 
 1. to backup: 
 
-                pg_dump --username=<your_user> --host=localhost <your_database> > /var/lib/postgresql/data/your_backup_file.sql
-                pg_dump -U your_username -h your_host -p your_port -d your_database --no-blobs -F c -v -f your_backup_file.dump
+        pg_dump --username=<your_user> --host=localhost <your_database> > /var/lib/postgresql/data/your_backup_file.sql
+        pg_dump -U your_username -h your_host -p your_port -d your_database --no-blobs -F c -v -f your_backup_file.dump
 
 2. to restore:
 
-                createdb -U your_username -h your_host -p your_port new_database_name
-                pg_restore -U your_username -h your_host -p your_port -d new_database_name -v your_backup_file.dump
-                psql -U your_username -h your_host -p your_port -d new_database_name -f your_backup_file.sql
+        createdb -U your_username -h your_host -p your_port new_database_name
+        pg_restore -U your_username -h your_host -p your_port -d new_database_name -v your_backup_file.dump
+        psql -U your_username -h your_host -p your_port -d new_database_name -f your_backup_file.sql
 
 
 # deploy Amazon RDS (free-tier)

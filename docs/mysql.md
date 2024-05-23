@@ -24,7 +24,7 @@
 
 - Finally, dump/backup the staff table from the database using the command below in the terminal:
 
-        mysqldump --host=127.0.0.1 --port=3306 --user=root --password <your_database> <your_table> > <your sql file.sql>
+        mysqldump --host=127.0.0.1 --port=3306 --user=root --password <your_database> <your_table> > <your_sql_file.sql>
 
 - To see a list of the Storage Engines supported on your MySQL server: `SHOW engines;`
 
