@@ -66,13 +66,11 @@ Let’s take a deeper look at the `Grant System Table category`. They contain in
 
 3. Another point of interest in the information_schema database is the TABLES table which contains meta data about all the tables in the server. One of the columns in this table contains information about a table’s storage engine type. To tie this back to our earlier discussion about storage engines, run the following command in the CLI to view the storage engine type for the ‘country’, ‘city’, ‘countrylanguage’, and finally the ‘csv_test’ table you created:
 
-
         SELECT table_name, engine FROM INFORMATION_SCHEMA.TABLES 
         WHERE table_name = 'country' OR table_name = 'city' 
         OR table_name = 'countrylanguage' OR table_name = 'csv_test';
 
 4. Finally, the TABLES table in the information_schema database contains information on the the size of a given table in bytes. This information is stored in two columns: data_length and index_length which stores the size of the data in the table and the size of the index file for that table, respectively. Therefore, the total size of the table is the sum of the values in these two columns. This value would be given in bytes, however, if you wish to use a more convenient unit, the sum can be converted to kB by dividing by 1024. You can find the size of the tables (in kB) you queried in the previous step with the following command in the CLI:
-
 
         SELECT table_name, (data_length + index_length)/1024 FROM INFORMATION_SCHEMA.TABLES 
         WHERE table_name = 'country' OR table_name = 'city' 

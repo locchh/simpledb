@@ -74,7 +74,84 @@ The system catalog stores schema metadata, such as information about tables and 
         pg_restore -U your_username -h your_host -p your_port -d new_database_name -v your_backup_file.dump
         psql -U your_username -h your_host -p your_port -d new_database_name -f your_backup_file.sql
 
-
-# deploy Amazon RDS (free-tier)
-
 # deploy Amazon EC2
+
+To connect to an Amazon EC2 instance using SSH, follow these steps:
+
+Prerequisites:
+- Ensure you have the .pem key pair file (private key) that you specified when launching the instance.
+- Confirm that your EC2 instance is running and that you have its public DNS name or IP address.
+- Verify that your security group allows inbound SSH traffic (port 22).
+
+Steps to Connect (For Linux/macOS)
+
+1. Open a terminal.
+
+2. Set the permissions for your .pem file: `chmod 400 /path/to/your-key-pair.pem`
+
+3. Connect to your instance using SSH: `ssh -i /path/to/your-key-pair.pem ec2-user@your-instance-public-dns`
+
+Replace /path/to/your-key-pair.pem with the path to your .pem file, and your-instance-public-dns with the public DNS name or IP address of your EC2 instance. The default username is ec2-user for Amazon Linux, but it can vary depending on the AMI:
+- Amazon Linux, CentOS, RHEL: `ec2-user`
+- Ubuntu: `ubuntu`
+- Debian: `admin` or `root`
+- SUSE: `ec2-user` or `root`
+
+
+For Windows:
+
+Using PuTTY:
+
+- Download and install PuTTY and PuTTYgen.
+
+- Convert the .pem file to a .ppk file using PuTTYgen:
+        
+        Open PuTTYgen.
+        Click "Load" and select your .pem file.
+        Click "Save private key" to save the .ppk file.
+
+- Connect to your instance:
+
+        Open PuTTY.
+        In the "Host Name" field, enter ec2-user@your-instance-public-dns.
+        In the "Connection" menu, expand "SSH" and select "Auth".
+        Click "Browse" and select the .ppk file you generated.
+        Click "Open" to start the SSH session.
+
+Troubleshooting:
+
+Permission Denied: Ensure your .pem file has the correct permissions (chmod 400).
+Connection Timed Out: Verify that your security group allows inbound SSH traffic (port 22) from your IP address.
+Unknown Host: Add the -o option to bypass host key checking if needed:
+
+        ssh -o StrictHostKeyChecking=no -i /path/to/your-key-pair.pem ec2-user@your-instance-public-dns
+
+3. install postgres follow this page:
+
+- To install PostgreSQL, first refresh your server’s local package index: `sudo apt update`
+- Then, install the Postgres package along with a -contrib package that adds some additional utilities and functionality: `sudo apt install postgresql postgresql-contrib`
+- check the installation `sudo systemctl status postgresql`
+- The installation procedure created a user account called postgres that is associated with the default Postgres role. There are a few ways to utilize this account to access Postgres. One way is to switch over to the postgres account on your server by running the following command: `sudo -i -u postgres`
+- Then you can access the Postgres prompt by running: `psql`
+
+4. modify the file to accept connection from anywhere
+- backup `postgresql.conf` config file: `sudo cp /etc/postgresql/14/main/postgresql.conf /etc/postgresql/14/main/postgresql.conf.bak`
+- open text editor: `sudo nano /etc/postgresql/14/main/postgresql.conf`
+- change the `listen_addresses`: `listen_addresses=(*)`
+- change the password of postgres user: `sudo passwd postgres`
+- login using postgres system account: `su - postgres`
+- change the database postgres password `psql -c "ALTER USER postgres WITH PASSWORD '<your_password>'"`
+- backup `pg_hba.conf` config file: `sudo cp /etc/postgresql/14/main/pg_hba.conf /etc/postgresql/14/main/pg_hba.conf.bak`
+- modify the following file to allow remote connections: `sudo nano /etc/postgresql/14/main/pg_hba.conf`
+- change the content: 
+
+        # IPv4 local connections:
+        host    all             all             127.0.0.1/32            scram-sha-256
+
+        to
+
+        # IPv4 local connections:
+        host    all             all             0.0.0.1/0            md5
+
+- restart postgresql `sudo systemctl restart postgresql`
+

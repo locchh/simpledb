@@ -24,9 +24,9 @@ example of simple database
 |02|Create Tables and Load Data|✅|✅|❌|❌|
 |02|Keys and Constraints|✅|✅|❌|❌|
 |03|View, Procedure|✅|✅|❌|❌|
-|04|Configuration and System|❌|❌|❌|❌|
+|04|Configuration and System|✅|✅|❌|❌|
 |05|Transaction Logs for Recovery|❌|❌|❌|❌|
-|06|Backup and Restore|❌|❌|❌|❌|
+|06|Backup and Restore|✅|❌|❌|❌|
 |07|User Management and Access Control|❌|❌|❌|❌|
 |08|Monitoring and Optimizing your Databases|❌|❌|❌|❌|
 |09|Troubleshooting|❌|❌|❌|❌|
