@@ -10,13 +10,6 @@ CREATE TABLE IF NOT EXISTS PERSONS(
     PRIMARY KEY (person_id)
 );
 
--- insert few data
--- INSERT INTO PERSONS VALUES ("Loc","Chuong","M","1996-01-07","locchuong@email.com"),
--- ("Dott. Sue","Battaglia","F","1990-04-21","battaglia-dott@email.com","Stretto Testa 3\nBorgo Gelsomina ligure, 56906 Terni (IM)"),
--- ("Sig. Giorgio","Ricci","M","1895-07-15","giorgio@hotmail.com","ontrada Mariani 01 Appartamento 46Sala a mare, 30911 L'Aquila (SV)"),
--- ("Ileana","Guerra","F","1994-06-04","GuerraIleana@gmail.com","Canale Bruno 81 Settimo Azue, 37320 Piacenza"),
--- ("testa","bastian","M","1981-10-29","testasebastian@gmail.com","Incrocio Rossetti 322 Borgo Ariel salentino, 06903 Genova (AL)");
-
 INSERT INTO PERSONS (first_name, last_name, gender, birth_day, email_address, local_address)
 VALUES 
     ('Loc','Chuong','M','1996-01-07','locchuong@email.com',NULL),
