@@ -3,7 +3,7 @@ example of simple database
 
 - database name: `example`
 - user: `root`
-- password: `simple_pass`
+- password: `123`
 
 **PERSONS**
 |No|Column|Type|Constraint|
