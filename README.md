@@ -35,6 +35,12 @@ example of simple database
 
 # references
 
-https://docs.sqlalchemy.org/en/14/orm/tutorial.html
+[Faker](https://faker.readthedocs.io/en/master/)
 
-https://faker.readthedocs.io/en/master/
+[Sqlalchemy](https://docs.sqlalchemy.org/en/14/orm/tutorial.html)
+
+[MySQL Tutorial](https://www.mysqltutorial.org/)
+
+[PostgreSQL Exercises](https://pgexercises.com/mys)
+
+[PostgreSQL Tutorial](https://www.postgresqltutorial.com/)
