@@ -20,7 +20,7 @@
 
         pg_dump --username=root --host=localhost --password --dbname=<your_database> --table=store --format=plain > <your dump file>
 
-# 2. configuration, storage engines, and system tables
+# 2. Configuration, storage engines, and system tables
 
 **Configure Your PostgreSQL Server Instance**
 

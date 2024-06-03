@@ -1,12 +1,16 @@
-# deployment
+# Deployment
 
-## pull docker image
+## Pull docker image
+
 - pull docker postgres: `docker pull postgres`
+
 - pull docker mysql: `docker pull mysql`
+
 - pull docker myphpadmin: `docker pull phpmyadmin`
+
 - pull docker mongodb: `docker pull mongo`
 
-## run docker container postgres
+## Run docker container postgres
 - run docker postgres:
 
         docker run --name <your_container_name> \
@@ -24,7 +28,7 @@
 
 - access psql: `psql -U <your_postgres_user> -W`
 
-## run docker container mysql
+## Run docker container mysql
 - create network: `docker network create <your_network>`
 
 - run docker mysql:
@@ -54,7 +58,7 @@
 
 - access myphpadmin: `http://localhost:8081/`
 
-## run docker container mongodb
+## Run docker container mongodb
 - run docker mongodb:
 
         docker run --name <your_container_name> \

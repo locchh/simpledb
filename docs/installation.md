@@ -1,4 +1,4 @@
-# install docker
+# Install docker
 
 1. Run the following command to uninstall all conflicting packages:
 
@@ -29,9 +29,9 @@
 
         sudo docker run hello-world
 
-# install UI
+# Install UI
 
-# install pgadmin
+# Install pgadmin
 
 1. Start by updating your system packages. Ensure your system is up-to-date using the following commands:
 
@@ -52,7 +52,7 @@
         sudo apt install pgadmin4-desktop (For desktop mode only)
         sudo apt install pgadmin4-web (For web mode only)
 
-# install phpmyAdmin
+# Install phpmyAdmin
 
 1. Update:
 
