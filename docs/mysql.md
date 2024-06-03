@@ -1,4 +1,4 @@
-# commands
+# 1. Commands
 
 - Show all databases `SHOW DATABASES;`
 
@@ -28,11 +28,11 @@
 
 - To see a list of the Storage Engines supported on your MySQL server: `SHOW engines;`
 
-- create new user: `CREATE USER <your_user>`
+- Create new user: `CREATE USER <your_user>`
 
-- quit `\q`
+- Quit `\q`
 
-# configuration, storage Engines, and system Tables
+# 2. Configuration, storage Engines, and system Tables
 
 The MySQL server contains a database called mysql. This is the system database that contains information required for the server to run, such as meta data on all the other tables in the database. This database is one of the special cases where the default InnoDB storage engine is not used. Instead, the tables in the mysql database used the MyISAM storage engine. In general, we mostly query the system tables and rarely modify them directly.
 
@@ -45,7 +45,7 @@ The tables in the mysql database fall into several categories, some of which inc
 
 For your reference, an exhaustive list of the categories can be found in Section 5.7 of the MySQL documentation.
 
-## grant System Table Category
+# 3. Grant System Table Category
 
 Let’s take a deeper look at the `Grant System Table category`. They contain information about the user accounts and the privileges granted to them.
 
@@ -55,7 +55,7 @@ Let’s take a deeper look at the `Grant System Table category`. They contain in
 
 3. The user table contains user accounts, global privileges, and other nonprivilege columns. There are many columns in this table and is a little unwieldy to look at so let’s take a look at just the first column which lists the names of the users in the database. Enter the following into the CLI: `SELECT User from user;`
 
-## query the `INFORMATION_SCHEMA` Database Tables
+# 4. Query the `INFORMATION_SCHEMA` Database Tables
 
 1. The `INFORMATION_SCHEMA` is a database found inside every MySQL server. It contains meta data about the MySQL server such as the name of a database or table, the data type of a column, or access privileges. Note that this database contains read-only tables, so you cannot directly use any INSERT, UPDATE, or DELETE commands on them. Let’s go ahead and connect to the database.
 
@@ -76,4 +76,4 @@ Let’s take a deeper look at the `Grant System Table category`. They contain in
         WHERE table_name = 'country' OR table_name = 'city' 
         OR table_name = 'countrylanguage' OR table_name = 'csv_test';
 
-# transaction logs for recovery
+# 5.Transaction logs for recovery

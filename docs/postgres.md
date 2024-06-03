@@ -1,28 +1,28 @@
-# commands
+# 1. Commands
 
-- get help:  `help`
+- Get help:  `help`
 
-- show data directory `SHOW data_directory`
+- Show data directory `SHOW data_directory`
 
-- get all databases `\l`
+- Get all databases `\l`
 
-- quit `\q`
+- Quit `\q`
 
-- connect to specific database `\c <your_database>`
+- Connect to specific database `\c <your_database>`
 
-- list all tables `\dt`
+- List all tables `\dt`
 
-- list all tables and views `\dp`
+- List all tables and views `\dp`
 
-- get columns from specific table `\d <your_table>`
+- Get columns from specific table `\d <your_table>`
 
 - To dump/backup the store table from the database:
 
         pg_dump --username=root --host=localhost --password --dbname=<your_database> --table=store --format=plain > <your dump file>
 
-# configuration, storage engines, and system tables
+# 2. configuration, storage engines, and system tables
 
-## Configure Your PostgreSQL Server Instance
+**Configure Your PostgreSQL Server Instance**
 
 A PostgreSQL server instance has a corresponding file named `postgresql.conf` that contains the configuration parameters for the server. By modifying this file, you can enable, disable, or otherwise customize the settings of your PostgreSQL server instance to best suit your needs as a database administrator. While you can manually modify this `postgresql.conf` file and restart the server for the changes to take effect, you can also edit some configuration parameters directly from the command line interface (CLI).
 
@@ -38,7 +38,7 @@ In this exercise, you will customize the configuration settings for the PostgreS
 
 3. When you executed the `ALTER SYSTEM` command in Step 2 of this exercise, a new file named `postgres.auto.conf` was created. You can open the file by first opening the file explorer on Cloud IDE then clicking `postgres > data > postgresql.auto.conf`.
 
-## Navigate the System Catalog
+**Navigate the System Catalog**
 
 The system catalog stores schema metadata, such as information about tables and columns and internal bookkeeping information. In PostgreSQL, the system catalogs are regular tables in which you can add columns and insert and update values. In directly modifying the system catalogs, you can cause severe problems in your system, so it is generally recommended to avoid doing so. Instead, the system catalogs are updated automatically when performing other SQL commands. For example, if you run a CREATE DATABASE command, a new database is created on the disk and a new row is automatically inserted into the pg_database system catalog table, storing metadata about that database.
 
@@ -59,9 +59,9 @@ The system catalog stores schema metadata, such as information about tables and 
         ALTER TABLE aircrafts_data RENAME TO aircraft_fleet;
 
 
-# transaction logs for recovery
+# 3. Transaction logs for recovery
 
-# backup and restore
+# 4. Backup and restore
 
 1. to backup: 
 
@@ -74,7 +74,7 @@ The system catalog stores schema metadata, such as information about tables and 
         pg_restore -U your_username -h your_host -p your_port -d new_database_name -v your_backup_file.dump
         psql -U your_username -h your_host -p your_port -d new_database_name -f your_backup_file.sql
 
-# deploy Amazon EC2
+# 5. Deploy Amazon EC2
 
 To connect to an Amazon EC2 instance using SSH, follow these steps:
 
@@ -97,52 +97,44 @@ Replace /path/to/your-key-pair.pem with the path to your .pem file, and your-ins
 - Debian: `admin` or `root`
 - SUSE: `ec2-user` or `root`
 
-
-For Windows:
-
-Using PuTTY:
-
-- Download and install PuTTY and PuTTYgen.
-
-- Convert the .pem file to a .ppk file using PuTTYgen:
-        
-        Open PuTTYgen.
-        Click "Load" and select your .pem file.
-        Click "Save private key" to save the .ppk file.
-
-- Connect to your instance:
-
-        Open PuTTY.
-        In the "Host Name" field, enter ec2-user@your-instance-public-dns.
-        In the "Connection" menu, expand "SSH" and select "Auth".
-        Click "Browse" and select the .ppk file you generated.
-        Click "Open" to start the SSH session.
-
-Troubleshooting:
-
-Permission Denied: Ensure your .pem file has the correct permissions (chmod 400).
-Connection Timed Out: Verify that your security group allows inbound SSH traffic (port 22) from your IP address.
-Unknown Host: Add the -o option to bypass host key checking if needed:
-
-        ssh -o StrictHostKeyChecking=no -i /path/to/your-key-pair.pem ec2-user@your-instance-public-dns
-
 3. install postgres follow this page:
 
 - To install PostgreSQL, first refresh your server’s local package index: `sudo apt update`
+
 - Then, install the Postgres package along with a -contrib package that adds some additional utilities and functionality: `sudo apt install postgresql postgresql-contrib`
-- check the installation `sudo systemctl status postgresql`
+
+- Check the installation `sudo systemctl status postgresql`
+
 - The installation procedure created a user account called postgres that is associated with the default Postgres role. There are a few ways to utilize this account to access Postgres. One way is to switch over to the postgres account on your server by running the following command: `sudo -i -u postgres`
+
 - Then you can access the Postgres prompt by running: `psql`
 
 4. modify the file to accept connection from anywhere
-- backup `postgresql.conf` config file: `sudo cp /etc/postgresql/14/main/postgresql.conf /etc/postgresql/14/main/postgresql.conf.bak`
-- open text editor: `sudo nano /etc/postgresql/14/main/postgresql.conf`
-- change the `listen_addresses`: `listen_addresses=(*)`
-- change the password of postgres user: `sudo passwd postgres`
-- login using postgres system account: `su - postgres`
-- change the database postgres password `psql -c "ALTER USER postgres WITH PASSWORD '<your_password>'"`
-- backup `pg_hba.conf` config file: `sudo cp /etc/postgresql/14/main/pg_hba.conf /etc/postgresql/14/main/pg_hba.conf.bak`
+
+- Backup `postgresql.conf` config file: `sudo cp /etc/postgresql/14/main/postgresql.conf /etc/postgresql/14/main/postgresql.conf.bak`
+
+- Open text editor: `sudo nano /etc/postgresql/14/main/postgresql.conf`
+
+- Edit `postgresql.conf` to listen on all IP addresses:
+
+        sudo nano /var/lib/pgsql/data/postgresql.conf  # Amazon Linux
+        sudo nano /etc/postgresql/13/main/postgresql.conf  # Ubuntu
+
+Find the line listen_addresses and set it to:
+
+        listen_addresses = '*'
+
+
+- Change the password of postgres user: `sudo passwd postgres`
+
+- Login using postgres system account: `su - postgres`
+
+- Change the database postgres password `psql -c "ALTER USER postgres WITH PASSWORD '<your_password>'"`
+
+- Backup `pg_hba.conf` config file: `sudo cp /etc/postgresql/14/main/pg_hba.conf /etc/postgresql/14/main/pg_hba.conf.bak`
+
 - modify the following file to allow remote connections: `sudo nano /etc/postgresql/14/main/pg_hba.conf`
+
 - change the content: 
 
         # IPv4 local connections:
@@ -154,4 +146,3 @@ Unknown Host: Add the -o option to bypass host key checking if needed:
         host    all             all             0.0.0.1/0            md5
 
 - restart postgresql `sudo systemctl restart postgresql`
-

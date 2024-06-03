@@ -1,4 +1,4 @@
-# commands
+# 1. Commands
 
 - show all databases: `show dbs`
 
